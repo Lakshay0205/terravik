@@ -49,7 +49,7 @@ export const Navbar = () => {
   // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
-  }, [getBrandRoute]);
+  }, [brandId]);
 
   useEffect(() => {
     const handleResize = () => { if (window.innerWidth >= 640) setIsOpen(false); };
@@ -169,7 +169,7 @@ export const Navbar = () => {
           }}
         />
         
-        <div className="max-w-7xl mx-auto px-8 relative z-10 max-sm:px-4">
+        <div className="max-w-7xl mx-auto px-8 relative z-[60] max-sm:px-4">
           <div className="flex justify-between items-center h-16 sm:h-28">
             {/* Logo Section */}
             <motion.div
@@ -344,7 +344,7 @@ export const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed left-0 right-0 z-40 shadow-2xl sm:hidden"
+            className="fixed left-0 right-0 z-[60] shadow-2xl sm:hidden"
             style={{ 
               top: '64px',
               backgroundColor: colors.primary,
@@ -396,7 +396,7 @@ export const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm sm:hidden"
+            className="fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm sm:hidden"
             style={{ top: '64px' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

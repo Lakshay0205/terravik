@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: '*', // Allow all origins in development
+  origin: process.env.FRONTEND_URL || '*',
   credentials: true
 }));
 
