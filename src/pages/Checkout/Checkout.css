@@ -1,0 +1,139 @@
+.checkout-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5e8 0%, #e0ebd0 100%);
+  padding: 2rem 1rem;
+}
+
+.checkout-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.checkout-header {
+  margin-bottom: 3rem;
+}
+
+.checkout-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.step-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #6b7280;
+  transition: all 0.3s;
+}
+
+.step.active .step-number {
+  background: var(--gradient-primary);
+  border-color: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(90, 154, 60, 0.3);
+}
+
+.step-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.step.active .step-label {
+  color: var(--color-primary);
+}
+
+.step-divider {
+  width: 60px;
+  height: 2px;
+  background: #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.checkout-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.checkout-right {
+  position: sticky;
+  top: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkout-right {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .checkout-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .checkout-title {
+    font-size: 1.75rem;
+  }
+  
+  .step-indicators {
+    gap: 0.5rem;
+  }
+  
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+  
+  .step-label {
+    font-size: 0.75rem;
+  }
+  
+  .step-divider {
+    width: 40px;
+  }
+}

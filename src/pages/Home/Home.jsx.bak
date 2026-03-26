@@ -1,0 +1,502 @@
+﻿import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { useBrandNavigation } from '../../hooks/useBrandNavigation';
+import { useBrandContext } from '../../context/BrandContext';
+import { HeroSection } from '../../components/HeroSection';
+import { SEOHead } from '../../components/SEOHead';
+import { Leaf, Recycle, Globe, TrendingUp, Zap, Users, CheckCircle } from 'lucide-react';
+import liquidGoldImage from '../../assets/products/terravik-liquid-gold-1L.png';
+
+/**
+ * Professional Homepage Layout
+ * Includes: Hero, Brand Story, Featured Product, Benefits, Research, Sustainability, CTA, Footer
+ * SEO Optimized with semantic HTML and meta tags
+ */
+export const Home = () => {
+  const { navigateToBrand, getBrandRoute } = useBrandNavigation();
+  const { brand, colors, brandId } = useBrandContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
+  };
+
+  // Brand-specific content
+  const isTerravik = brandId === 'terravik';
+  const isHawaiAgro = brandId === 'hawaiAgro';
+
+  const companyInfo = {
+    name: 'Jaivik Vikalp Urja LLP',
+    location: 'Moradabad, Uttar Pradesh',
+  };
+
+  const productInfo = isTerravik
+    ? {
+        name: 'TerraVik Liquid Gold',
+        slug: 'liquid-gold',
+        description: 'Premium liquid organic fermented manure crafted for home gardeners and urban plant enthusiasts. Made through a natural fermentation process for vibrant, healthy growth.',
+        image: liquidGoldImage,
+        benefits: [
+          'Rich in organic nutrients',
+          'Perfect for indoor and balcony plants',
+          'Easy liquid application',
+          'Eco-friendly, chemical-free formula',
+        ],
+      }
+    : {
+        name: 'Hawai Agro FOM',
+        slug: 'fom',
+        description: 'Fermented Organic Manure (FOM) developed for farmers and large-scale agriculture. Enriches soil health, boosts crop yield, and supports sustainable farming.',
+        image: null,
+        benefits: [
+          'Proven yield increase across crops',
+          'Cost-effective per-acre solution',
+          'Supports sustainable and organic farming',
+          'Farmer-tested and field-proven formula',
+        ],
+      };
+
+  const benefits = [
+    {
+      icon: Leaf,
+      title: 'Organic & Natural',
+      description: 'Made from 100% natural ingredients without harmful chemicals',
+    },
+    {
+      icon: Recycle,
+      title: 'Sustainable',
+      description: 'Environmentally friendly and supports sustainable agriculture',
+    },
+    {
+      icon: Globe,
+      title: 'Eco-Friendly',
+      description: 'Reduces carbon footprint and promotes green farming',
+    },
+    {
+      icon: TrendingUp,
+      title: 'High Yield',
+      description: 'Proven to increase crop yield and plant growth',
+    },
+  ];
+
+  const researchPoints = [
+    'Advanced fermentation technology',
+    'Laboratory tested formulations',
+    'Continuous innovation',
+    'Farmer feedback integration',
+  ];
+
+  const sustainabilityPoints = [
+    'Zero waste production process',
+    'Biodegradable packaging materials',
+    'Carbon neutral operations',
+    'Community-driven initiatives',
+  ];
+
+  return (
+    <>
+      {/* SEO Head Component */}
+      <SEOHead page="home" />
+
+      <main className="w-full">
+        {/* Hero Section */}
+        <HeroSection />
+
+        {/* Brand Story Section */}
+        <motion.section
+          className="section-padding bg-white"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Our Story"
+        >
+          <div className="section-container">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              {/* Story Content */}
+              <motion.article variants={itemVariants}>
+                <h2 className="text-responsive-h2 mb-6" style={{ color: colors.primary }}>
+                  Our Story
+                </h2>
+                <p className="text-gray-600 text-lg mb-4 leading-relaxed">
+                  {companyInfo.name} is committed to revolutionizing agriculture through sustainable and
+                  organic solutions. Based in {companyInfo.location}, we bring innovation to farming.
+                </p>
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  {isTerravik
+                    ? 'TerraVik brings premium home gardening solutions to urban gardeners, making sustainable living accessible to everyone.'
+                    : 'Hawai Agro empowers farmers with organic solutions that increase yield while protecting the environment.'}
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" />
+                    <span className="text-gray-700">Certified Organic Products</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" />
+                    <span className="text-gray-700">Trusted by Thousands</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" />
+                    <span className="text-gray-700">Sustainable Practices</span>
+                  </li>
+                </ul>
+              </motion.article>
+
+              {/* Story Image */}
+              <motion.div variants={imageVariants} className="relative">
+                <figure
+                  className="rounded-lg overflow-hidden shadow-xl h-96 bg-gradient-to-br flex items-center justify-center"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+                  }}
+                >
+                  <Leaf className="w-32 h-32 text-white" aria-hidden="true" />
+                  <figcaption className="sr-only">Organic leaf representing sustainable agriculture</figcaption>
+                </figure>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Featured Product Section */}
+        <motion.section
+          className="section-padding bg-gray-50"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Featured Product"
+        >
+          <div className="section-container">
+            <motion.div variants={itemVariants} className="text-center mb-12">
+              <h2 className="text-responsive-h2 mb-4" style={{ color: colors.primary }}>
+                Featured Product
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                {productInfo.description}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              {/* Product Image */}
+              <motion.div variants={imageVariants} className="relative">
+                <figure
+                  className="rounded-lg overflow-hidden shadow-xl h-96 bg-gradient-to-br flex items-center justify-center"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${colors.secondary} 0%, ${colors.accent} 100%)`,
+                  }}
+                >
+                  {isTerravik && productInfo.image ? (
+                    <img
+                      src={productInfo.image}
+                      alt={productInfo.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Leaf className="w-32 h-32 text-white" aria-hidden="true" />
+                  )}
+                  <figcaption className="sr-only">{productInfo.name} product image</figcaption>
+                </figure>
+              </motion.div>
+
+              {/* Product Details */}
+              <motion.article variants={itemVariants}>
+                <h3 className="text-3xl font-bold mb-6" style={{ color: colors.primary }}>
+                  {productInfo.name}
+                </h3>
+                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                  {productInfo.description}
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  <h4 className="font-semibold text-gray-900">Key Benefits:</h4>
+                  <ul className="space-y-3">
+                    {productInfo.benefits.map((benefit, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="flex items-center gap-3"
+                      >
+                        <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" aria-hidden="true" />
+                        <span className="text-gray-700">{benefit}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigateToBrand(`products/${productInfo.slug}`)}
+                  className="px-8 py-3 rounded-lg font-semibold text-white transition-all"
+                  style={{ backgroundColor: colors.secondary }}
+                  aria-label={`Learn more about ${productInfo.name}`}
+                >
+                  Learn More
+                </motion.button>
+              </motion.article>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Benefits Section */}
+        <motion.section
+          className="section-padding bg-white"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Why Choose Us"
+        >
+          <div className="section-container">
+            <motion.div variants={itemVariants} className="text-center mb-12">
+              <h2 className="text-responsive-h2 mb-4" style={{ color: colors.primary }}>
+                Why Choose Us
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Experience the difference with our premium organic solutions
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {benefits.map((benefit, index) => {
+                const IconComponent = benefit.icon;
+                return (
+                  <motion.article
+                    key={index}
+                    variants={itemVariants}
+                    className="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition-shadow"
+                  >
+                    <IconComponent className="w-5 h-5 text-green-600 mx-auto mb-4" aria-hidden="true" />
+                    <h3 className="text-xl font-bold mb-3 text-gray-900">{benefit.title}</h3>
+                    <p className="text-gray-600">{benefit.description}</p>
+                  </motion.article>
+                );
+              })}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Research & Innovation Section */}
+        <motion.section
+          className="section-padding bg-gray-50"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Research and Innovation"
+        >
+          <div className="section-container">
+            <motion.div variants={itemVariants} className="text-center mb-12">
+              <h2 className="text-responsive-h2 mb-4" style={{ color: colors.primary }}>
+                Research & Innovation
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Backed by science and continuous innovation
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              {/* Research Content */}
+              <motion.article variants={itemVariants}>
+                <div className="space-y-6">
+                  {researchPoints.map((point, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-start gap-4"
+                    >
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+                        style={{ backgroundColor: colors.secondary }}
+                        aria-hidden="true"
+                      >
+                        {index + 1}
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">{point}</h4>
+                        <p className="text-gray-600">
+                          {index === 0 && 'Using cutting-edge fermentation technology for maximum nutrient content'}
+                          {index === 1 && 'Every batch tested in certified laboratories for quality assurance'}
+                          {index === 2 && 'Constantly improving our formulas based on latest agricultural research'}
+                          {index === 3 && 'Direct feedback from farmers helps us refine our products'}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.article>
+
+              {/* Research Image */}
+              <motion.div variants={imageVariants} className="relative">
+                <figure
+                  className="rounded-lg overflow-hidden shadow-xl h-96 bg-gradient-to-br flex items-center justify-center"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+                  }}
+                >
+                  <Zap className="w-32 h-32 text-white" aria-hidden="true" />
+                  <figcaption className="sr-only">Innovation and research representation</figcaption>
+                </figure>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Sustainability Section */}
+        <motion.section
+          className="section-padding bg-white"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Sustainability Commitment"
+        >
+          <div className="section-container">
+            <motion.div variants={itemVariants} className="text-center mb-12">
+              <h2 className="text-responsive-h2 mb-4" style={{ color: colors.primary }}>
+                Our Commitment to Sustainability
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Building a greener future for generations to come
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { icon: Recycle, label: 'Zero waste production process', title: sustainabilityPoints[0] },
+                { icon: Leaf, label: 'Eco-friendly packaging materials', title: sustainabilityPoints[1] },
+                { icon: Globe, label: 'Reducing environmental impact', title: sustainabilityPoints[2] },
+                { icon: Users, label: 'Supporting local communities', title: sustainabilityPoints[3] },
+              ].map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.article
+                    key={index}
+                    variants={itemVariants}
+                    className="rounded-lg p-8 text-white text-center"
+                    style={{
+                      backgroundImage: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+                    }}
+                  >
+                    <IconComponent className="w-5 h-5 text-green-600 mx-auto mb-4" aria-hidden="true" />
+                    <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                    <p className="text-white/80 text-sm">
+                      {item.label}
+                    </p>
+                  </motion.article>
+                );
+              })}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Call To Action Section */}
+        <motion.section
+          className="section-padding text-white"
+          style={{
+            backgroundImage: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Call to Action"
+        >
+          <div className="section-container text-center">
+            <motion.div variants={itemVariants} className="max-w-2xl mx-auto">
+              <h2 className="text-responsive-h2 mb-6 text-white">
+                Ready to Transform Your {isTerravik ? 'Garden' : 'Farm'}?
+              </h2>
+              <p className="text-lg mb-8 text-white/90">
+                Join thousands of satisfied customers who have already made the switch to sustainable agriculture.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.button\n                  whileHover={{ scale: 1.05 }}\n                  whileTap={{ scale: 0.95 }}\n                  onClick={() => navigateToBrand(isTerravik ? 'products/liquid-gold' : 'products/fom')}\n                  className="px-8 py-3 rounded-lg font-semibold bg-white transition-all"\n                  style={{ color: colors.primary }}\n                >\n                  Shop Now\n                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigateToBrand('about')}
+                  className="px-8 py-3 rounded-lg font-semibold border-2 border-white text-white hover:bg-white/10 transition-all"
+                  aria-label="Learn more about our products"
+                >
+                  Learn More
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Stats Section */}
+        <motion.section
+          className="section-padding bg-gray-50"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          aria-label="Company Statistics"
+        >
+          <div className="section-container">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+              {[
+                { number: '10K+', label: 'Happy Customers' },
+                { number: '2', label: 'Flagship Products' },
+                { number: '100%', label: 'Organic' },
+                { number: '5+', label: 'Years Experience' },
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="p-6"
+                >
+                  <h3 className="text-4xl font-bold mb-2" style={{ color: colors.primary }}>
+                    {stat.number}
+                  </h3>
+                  <p className="text-gray-600">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      </main>
+    </>
+  );
+};
+
+export default Home;
+

@@ -1,0 +1,152 @@
+.payment-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.shipping-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.shipping-option {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.shipping-option:hover {
+  border-color: var(--color-primary);
+  background: rgba(90, 154, 60, 0.02);
+}
+
+.shipping-option.selected {
+  border-color: var(--color-primary);
+  background: rgba(90, 154, 60, 0.05);
+}
+
+.shipping-option input[type="radio"] {
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.option-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-dark);
+}
+
+.option-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.option-price {
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.option-price.free {
+  color: var(--color-success);
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 12px rgba(90, 154, 60, 0.3);
+}
+
+.place-order-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(90, 154, 60, 0.4);
+}
+
+.place-order-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-amount {
+  margin-left: auto;
+  font-size: 1.25rem;
+}
+
+.payment-info {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.info-text {
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .payment-section {
+    padding: 1.5rem;
+  }
+  
+  .option-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .btn-amount {
+    margin-left: 0;
+  }
+}
