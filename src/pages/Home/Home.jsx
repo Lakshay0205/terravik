@@ -9,9 +9,9 @@ import { Background3D } from '../../components/Background3D';
 import { Leaf, Recycle, Globe, TrendingUp, Zap, Users, CheckCircle, Sparkles, Award, Target } from 'lucide-react';
 import liquidGoldImage from '../../assets/products/terravik-liquid-gold-1L.png';
 import hawaiAgroImage from '../../assets/products/HawaiAgro 25kg.png';
-import terravikBackedByScience from '../../assets/images/terravik backed by science.png';
-import terravikTransformGarden from '../../assets/images/terravik transform your garden.png';
-import terravikCarbonNeutral from '../../assets/images/terravik carbon neutral.jpg';
+import terravikBackedByScience from '../../assets/images/Terravik Backed by science.png';
+import terravikTransformGarden from '../../assets/images/Terravik Transform your garden.png';
+import terravikCarbonNeutral from '../../assets/images/Terravik carbon neutral.jpg';
 
 const SECTION_IMAGES = {
   terravik: {
