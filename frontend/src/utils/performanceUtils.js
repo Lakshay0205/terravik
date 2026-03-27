@@ -182,26 +182,12 @@ export const registerServiceWorker = () => {
 
 // Optimize CSS delivery
 export const optimizeCSSDelivery = () => {
-  // Move non-critical CSS to async loading
-  const links = document.querySelectorAll('link[rel="stylesheet"]');
-  links.forEach((link) => {
-    if (!link.media || link.media === 'all') {
-      link.media = 'print';
-      link.onload = function () {
-        this.media = 'all';
-      };
-    }
-  });
+  // Do nothing - CSS is already optimized by Vite build
 };
 
 // Defer non-critical JavaScript
 export const deferNonCriticalJS = () => {
-  const scripts = document.querySelectorAll('script');
-  scripts.forEach((script) => {
-    if (!script.hasAttribute('defer') && !script.hasAttribute('async')) {
-      script.defer = true;
-    }
-  });
+  // Do nothing - JS is already handled by Vite build
 };
 
 // Initialize all performance optimizations
